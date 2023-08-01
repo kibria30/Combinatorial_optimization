@@ -1,7 +1,7 @@
 #include<bits/stdc++.h>
 using namespace std;
 
-struct node{       
+struct node{
     char ch;
     int freq;
     struct node *left, *right;
@@ -21,7 +21,7 @@ struct node extract_min(int first, int last){
         }
     }
     nodes[index].freq = -1;
-    return min; 
+    return min;
 }
 
 struct node huffman(int size, int ptr){
@@ -34,7 +34,7 @@ struct node huffman(int size, int ptr){
         nodes[ptr] = temp;
         ptr++;
     }
-    
+
     return extract_min(0, ptr-1);
 };
 

@@ -1,33 +1,29 @@
 #include<bits/stdc++.h>
 using namespace std;
 
-vector<struct node> nodes;
-
 struct node{
     char ch;
     int freq;
-    struct node *left = NULL, *right = NULL;
+    struct node *left, *right;
 };
 
-// struct node{
-//     int  data;
-//     struct node *left, *right;
-// };
+vector<struct node> nodes;
+vector<struct node> data;
 
-struct node* huffman(){
-    //sort(nodes.begin(), nodes.end());
-    struct node *temp = (struct node*)malloc(sizeof(struct node));
-    for(int i=0; i<nodes.size(); i++){
+struct node huffman(){
+    for(int i=1; i<data.size(); i++){   //binary tree er edge number = (vertex - 1);
+        struct node temp, x, y;
         sort(nodes.begin(), nodes.end());
-        temp->left = &nodes[0];
-        temp->right = &nodes[1];
-        temp->freq = nodes[0].freq+ nodes[1].freq;
-        temp->ch = '\0';
-        nodes.push_back(*temp);
-        nodes.erase(nodes.begin());
-        nodes.erase(nodes.begin());
+        x = nodes[0];
+        y = nodes[1];
+        temp.ch = '\0';
+        temp.left = &x;
+        temp.right = &y;
+        temp.freq = x.freq + y.freq;
+        nodes.push_back(temp);
     }
-    return temp;
+    sort(nodes.begin(), nodes.end());    // sort for structure kaj ore na
+    return nodes[0];
 };
 
 void preorder(struct node *root){
@@ -41,18 +37,23 @@ void preorder(struct node *root){
 }
 
 int main(){
-    struct node data[100000];
     int n;
     cin>>n;
+    struct node temp;
     for(int i = 0; i<n; i++){
-        cin>>data[i].ch;
-        cin>>data[i].freq;
-        nodes.push_back(data[i]);
+        cin>>temp.ch;
+        cin>>temp.freq;
+        data.push_back(temp);
+        data.push_back(temp);
     }
-    for(auto i :nodes){
+    for(auto i: nodes){
         cout<<i.ch<<" "<<i.freq<<endl;
     }
-
-    struct node *root = huffman();
+    struct node root = huffman();
+    // cout<<root.freq<<endl;
+    // for(int i = 0; i<13; i++){
+    //     cout<<nodes[i].ch<<" "<<nodes[i].freq<<endl;
+    // }
+    preorder(&root);
     return 0;
 }
