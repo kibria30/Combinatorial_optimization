@@ -4,6 +4,7 @@ using namespace std;
 struct node{
     char ch;
     int freq;
+    bool isdone;
     struct node *left, *right;
 };
 
@@ -11,22 +12,21 @@ struct node nodes[10000];
 struct node data[10000];
 
 struct node extract_min(int last){
-    struct node min, temp;
-    temp.ch= '\0';
-    temp.freq = 100000;
-    temp.left = NULL;
-    temp.right = NULL;
-    int index;
-    min = temp;
+    struct node *min = NULL ;
+    struct node *temp = (struct node*)malloc(sizeof(struct node));
+    temp->ch= '\0';
+    temp->freq = 100000;
+    temp->left = NULL;
+    temp->right = NULL; 
+    *min = *temp;
     for(int i=0; i<=last; i++){
-        if(nodes[i].freq <100000 && nodes[i].freq < min.freq){
-            min = nodes[i];
-            index = i;
+        if(!nodes[i].isdone && nodes[i].freq < min->freq){
+            *min = nodes[i];
+            //index = i;
         }
     }
-    cout<<"min for "<<last<<" "<<&min<<endl;
-    nodes[index].freq = 100000;
-    return min;
+    min->isdone = true;
+    return *min;
 }
 
 struct node huffman(int size, struct node *root){
@@ -50,10 +50,10 @@ struct node huffman(int size, struct node *root){
 };
 
 void preorder(struct node *root){
-    if(!root){
+    if(root){
         return;
     }
-    cout<<root->freq<<" ";
+    cout<<root->freq;
     preorder(root->left);
     preorder(root->right);
 }
@@ -64,6 +64,7 @@ int main(){
     for(int i = 0; i<n; i++){
         cin>>data[i].ch;
         cin>>data[i].freq;
+        data[i].isdone =  false;
         data[i].left = NULL;
         data[i].right = NULL;
         nodes[i] = data[i];
