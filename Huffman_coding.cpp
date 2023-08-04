@@ -4,12 +4,13 @@ using namespace std;
 struct node{
     char ch;
     int freq;
+    char code;
     bool isdone;
     struct node *left, *right;
 };
 
 struct node nodes[10000];
-struct node data[10000];
+vector<char> huffcode;
 
 struct node* extract_min(int last){
     struct node *min = NULL ;
@@ -34,14 +35,16 @@ struct node* huffman(int size){
     for(int i=1; i<size; i++){   //binary tree er edge number = (vertex - 1);
         x = extract_min(ptr);
         y = extract_min(ptr);
+        x->code = '0';
+        y->code = '1';
         ptr++;
+        //freopen('0', EOF, input.txt);
         nodes[ptr].ch = '\0';
         nodes[ptr].freq = x->freq + y->freq;
+        nodes[ptr].code = '\0';
         nodes[ptr].isdone = false;
         nodes[ptr].left = x;
         nodes[ptr].right = y;
-        cout<<x->freq<<" "<<y->freq<<endl;
-        cout<<"store "<<nodes[ptr].freq<<"  at ptr "<<ptr<<endl;
     }
     return extract_min(ptr);
 };
@@ -50,28 +53,36 @@ void preorder(struct node *root){
     if(!root){
         return;
     }
-    cout<<root->freq<<" ";
+    if(root->code){
+        huffcode.push_back(root->code);
+    }
+    
+    if(root->ch != '\0'){
+        cout<< root->ch <<" = ";
+        for(auto it: huffcode){
+            cout<< it;
+        }
+        cout<<endl;
+    }
+    
     preorder(root->left);
+    if(root->left) huffcode.pop_back();
     preorder(root->right);
+    if(root->right) huffcode.pop_back();
 }
 
 int main(){
     int n;
     cin>>n;
     for(int i = 0; i<n; i++){
-        cin>>data[i].ch;
-        cin>>data[i].freq;
-        data[i].isdone =  false;
-        data[i].left = NULL;
-        data[i].right = NULL;
-        nodes[i] = data[i];
+        cin>>nodes[i].ch;
+        cin>>nodes[i].freq;
+        nodes[i].code = '\0';
+        nodes[i].isdone =  false;
+        nodes[i].left = NULL;
+        nodes[i].right = NULL;
     }
-    // for(int i = 0; i<n; i++){
-    //     cout<<nodes[i].ch<<" "<<nodes[i].freq<<endl;
-    // }
-    struct node *root;
-    root = huffman(n);
-    //cout<<"from root "<<root.right->freq<<endl;
+    struct node *root = huffman(n);
     preorder(root);
     return 0;
 }
