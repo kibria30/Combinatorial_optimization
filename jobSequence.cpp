@@ -36,19 +36,29 @@ void printJobs(){
 //     }
 // }
 
-bool compare(struct job job1, struct job job2){
+bool compare(struct node job1, struct node job2){
     return job1.finish<job2.finish;
 }
 
 void iterativeselection(){
     int k = 0; 
-    for(int i=1; i<numberOfjobs; i++){
+    for(int i=k+1; i<numberOfjobs; i++){
         if(jobs[i].start < jobs[k].finish){
             jobs[i].iscompat = 0;
         }
         else k = i;
     }
 }
+
+void recursiveSelection(int present){
+    int i ;
+    for(i=present + 1; i<numberOfjobs && jobs[present].finish > jobs[i].start; i++){
+        jobs[i].iscompat = 0;
+    }
+    if(i<numberOfjobs){
+        recursiveSelection(i);
+    }
+} 
 
 int main(){
 
@@ -60,7 +70,8 @@ int main(){
     printJobs();
     cout<<"----------------------------------------------------------------------------------"<<endl;
 
-    iterativeselection();
+    //iterativeselection();
+    recursiveSelection(0);
     for(int i=0; i<numberOfjobs; i++){
         if(jobs[i].iscompat){
             cout<<jobs[i].job<<" "<<jobs[i].start<<" "<<jobs[i].finish<<" "<<jobs[i].iscompat<<endl;
