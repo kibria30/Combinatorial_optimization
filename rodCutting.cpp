@@ -10,14 +10,14 @@ int numberOfInput, totalLength;
 
 void readInput(){
     cin>>numberOfInput>>totalLength;
-    for(int i=0; i<numberOfInput; i++){
+    for(int i=1; i<=numberOfInput; i++){
         cin>>cutLength[i].length>>cutLength[i].price;
         cutLength[i].maxProfit = -100;
     }
 }
 
 void printResult(){
-    for(int i=0; i<numberOfInput; i++){
+    for(int i=1; i<=numberOfInput; i++){
         cout<<cutLength[i].length<<" "<<cutLength[i].price<<" "<<cutLength[i].maxProfit<<endl;
     }
     cout<<"------------------------------------------------------------------"<<endl;
@@ -32,9 +32,8 @@ int calcMaxProfit(int i){
     }
     else{
         int profit = -1;
-        for(int j=1; j<=i; j++){
+        for(int j=1; j<=i; j
             profit = max(profit, cutLength[j].price + calcMaxProfit(i-j));
-            //cout<<"calc "<< cutLength[j].price<<" "<<calcMaxProfit(i-j)<<endl;
         }
         return profit;
     } 
@@ -50,8 +49,9 @@ int main(){
     
     freopen("rodCutting_input.txt", "r", stdin);
     readInput();
-    printResult();
+    //printResult();
     cutRod();
-    printResult();
-    cout<<cutLength[1].price;
+    //printResult();
+    //cout<<cutLength[].price;
+    cout<<"Maxprofit for length "<<totalLength<<" is : "<<cutLength[totalLength].maxProfit<<endl;
 }
