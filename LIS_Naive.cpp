@@ -22,7 +22,7 @@ int LIS(){
     int maxLenIndex = 0, maxLen = L[0];
 
     for(int i=1; i<numOfElement; i++){
-        for(int j = i-1; j>=0; j--){
+        for(int j = 0; j<i; j++){
             if (arr[j] < arr[i] && L[j] + 1 > L[i]) {
                 L[i] = L[j] + 1;
                 prevIndex[i] = j;
@@ -34,11 +34,6 @@ int LIS(){
         }
     }
 
-    
-    for(int i=0; i<numOfElement; i++){
-        
-    }
-    
     return maxLenIndex;
 }
 
