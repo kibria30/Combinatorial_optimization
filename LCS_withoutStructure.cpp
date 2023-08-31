@@ -3,6 +3,9 @@
 #define INF 1e9
 using namespace std;
 
+//not finished 
+//almost finished but wrong answer
+
 int Matrix[MAX][MAX];
 char str1[100], str2[100];
 
@@ -61,7 +64,7 @@ void printLCS(int m, int n){
 
 int main(){
 
-    //freopen("LCS_input.txt", "r", stdin);
+    freopen("LCS_input.txt", "r", stdin);
     cin>>str1>>str2;
    
     int m = strlen(str1);
