@@ -1,0 +1,4 @@
+Dhaka Chittagong 250
+Chittagong Khulna 180
+Dhaka Rajshahi 165
+Rajshahi Sylhet 140
