@@ -15,8 +15,7 @@ using namespace std;
 int w[SIZE][SIZE], d[SIZE], prv[SIZE];
 int n = 0;
 string name[SIZE];
-bool isPushed[SIZE];
-priority_queue< pair<int, int>, vector< pair<int, int>>, greater < pair<int, int>>> stock;  //greater<> reverse the order
+priority_queue< pair<int, int>, vector< pair<int, int>>, greater < pair<int, int>>> stock;  //greater reverse the order
 
 void readInput(){
     int u, v;
@@ -72,6 +71,7 @@ void initiate(int source){
 void relax(int u, int v){
     if(d[v] > d[u] + w[u][v]){
         d[v] = d[u] + w[u][v];
+        cout<<"relax "<<name[v]<<d[v]<<endl;
         prv[v] = u;
     }
 }
@@ -79,27 +79,26 @@ void relax(int u, int v){
 void dijkstra(int source){
     initiate(source);
 
-    stock.push(make_pair(d[source], source));
-    isPushed[source] = true;
+    for(int i=0; i<n; i++){
+        stock.push(make_pair(d[i], i));   // pair e first element distance and second element index rakhsi
+    }
 
     while(!stock.empty()){
-        pair<int ,int> curr = stock.top();
+        pair<int ,int> curr = stock.top();    // fail to pick up minumum element
 
         cout<<name[curr.second]<<" "<<endl;
-
         for(int i=0; i<n; i++){
-            if(w[curr.second][i]){
+            if(w[curr.second][i])
                 relax(curr.second, i);
-                if(!isPushed[i]){
-                    stock.push(make_pair(d[i], i));
-                    isPushed[i] = true;
-                }
-                    
-            }
-               
         }
-        stock.pop();
-        
+        cout<<"poping "<<name[curr.second]<<" "<<curr.first<<endl;
+        stock.pop();  // why c poped before d
+        cout<<"top after poping : "<<name[stock.top().second]<<stock.top().first<<endl;
+        cout<<"d[u] after dijkstra :"<<endl;
+        for(int i=0; i<n; i++){
+            cout<<name[i]<<"-"<<d[i]<<" ";
+        }
+        cout<<endl;
     }
 }
 
