@@ -1,1 +1,1 @@
-INF
+Bellman_input.txt
