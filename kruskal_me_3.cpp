@@ -15,45 +15,47 @@ struct Edge{
     int w;
 };
 
-vector< pair<int, Edge>> edges;
+vector<Edge> edges;
 vector<Edge> mst;
 int numOfEdges;
 int numOfSelectedEdge=0;
 
-bool compareEdges(const pair<int, Edge>& a, const pair<int, Edge>& b) {
-    return a.first < b.first;
+bool compareEdges(const Edge& a, const Edge& b) {
+    return a.w < b.w;
 }
 
-vertex* findUltimateParent(vertex* x){
-    if(x->name == x->ultimateParent->name)
+vertex findUltimateParent(vertex& x){
+    if(x.name == x.ultimateParent->name)
         return x;
     else{
-        return findUltimateParent(x->ultimateParent);
+        return findUltimateParent(*x.ultimateParent);
     }
 }
 
-void link_set(vertex* u, vertex* v){
-    if(u->rank > v->rank){
-        v->ultimateParent = u;
+void link_set(vertex& u, vertex& v){
+    if(u.rank > v.rank){
+        v.ultimateParent = &u;
     }
     else{
-        u->ultimateParent = v;
-        if(u->rank == v->rank){
-            v->rank++;
+        u.ultimateParent = &v;
+        if(u.rank == v.rank){
+            v.rank++; 
         }
     }
 }
 
-void union_set(vertex* u, vertex* v){
-    link_set(findUltimateParent(u), findUltimateParent(u));
+void union_set(vertex& u, vertex& v){
+    vertex parentU = findUltimateParent(u);
+    vertex parentV = findUltimateParent(v);
+    link_set(parentU, parentV);
 }
 
 void make_set(){
     for(int i = 0; i<edges.size(); i++){
-        edges[i].second.u.rank = 0;
-        edges[i].second.u.ultimateParent = &edges[i].second.u;
-        edges[i].second.v.rank = 0;
-        edges[i].second.v.ultimateParent = &edges[i].second.v;
+        edges[i].u.rank = 0;
+        edges[i].u.ultimateParent = &edges[i].u;
+        edges[i].v.rank = 0;
+        edges[i].v.ultimateParent = &edges[i].v;
     }
 }
 
@@ -63,13 +65,11 @@ void MST(){
 
     sort(edges.begin(), edges.end(), compareEdges);
     
-    Edge* edge;
     for(int i=0; i<edges.size(); i++){
-        edge = &edges[i].second;
         //cout<<edges[i].second.u.name<<" "<<edges[i].second.v.name<<endl;
-        if(findUltimateParent(edge->u)->name != findUltimateParent(edge->v)->name){
-            mst.push_back(edge);
-            union_set(edge->u, edge->v);
+        if(findUltimateParent(edges[i].u).name != findUltimateParent(edges[i].v).name){
+            mst.push_back(edges[i]);
+            union_set(edges[i].u, edges[i].v);
             numOfSelectedEdge++;
         }
         //if(numOfSelectedEdge == numOfVertex-1) return;
@@ -82,7 +82,7 @@ int main(){
     Edge edge;
     for(int i=0; i<numOfEdges; i++){
         cin>>edge.u.name>>edge.v.name>>edge.w;
-        edges.push_back(make_pair(edge.w, edge));
+        edges.push_back(edge);
     }
 
     MST();
