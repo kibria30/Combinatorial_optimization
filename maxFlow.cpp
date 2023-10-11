@@ -63,7 +63,7 @@ bool bfs(int s, int t){
     q.push(s);
     visited[s] = true;
     parent[s] = -1;
- 
+    
     while (!q.empty()) {
         int u = q.front();
         q.pop();
