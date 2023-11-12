@@ -97,7 +97,7 @@ int fordFulkerson(int source, int sink) {
 
 int main() {
 
-    freopen("taskInput.txt", "r", stdin);
+    freopen("labTaskInput.txt", "r", stdin);
 
     int v;
 

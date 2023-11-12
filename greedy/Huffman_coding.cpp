@@ -73,7 +73,7 @@ void preorder(struct node *root){
 
 int main(){
     int n;
-    freopen("input.txt", "r", stdin);
+    freopen("huff_input.txt", "r", stdin);
     cin>>n;
     for(int i = 0; i<n; i++){
         cin>>nodes[i].ch;

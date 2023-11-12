@@ -47,7 +47,7 @@ double fractionKnapsnac(){
 
 int main(){
     //freopen("items_input.txt", "r", stdin);
-    freopen("items_2.txt", "r", stdin);
+    freopen("frac_knap_input.txt", "r", stdin);
     readInput();
     printOutput();
     sort(items, items+numberOfItems, compare);   // this will sort max to min using condition "compare"
