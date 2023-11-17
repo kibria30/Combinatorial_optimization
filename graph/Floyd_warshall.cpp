@@ -116,11 +116,11 @@ void printPath(){
 int main(){
     freopen("Floyd_input.txt", "r", stdin);
     readInput();
-    printMatrices();
+    // printMatrices();
 
     floydWarshall();
-    cout<<"After Floyd Warshall algorithm: "<<endl;
-    printMatrices();
+    // cout<<"After Floyd Warshall algorithm: "<<endl;
+    // printMatrices();
 
     printPath();
 }

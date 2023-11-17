@@ -85,7 +85,7 @@ void dijkstra(int source){
     while(!stock.empty()){
         pair<int ,int> curr = stock.top();
 
-        cout<<name[curr.second]<<" "<<endl;
+        //cout<<name[curr.second]<<" "<<endl;
 
         for(int i=0; i<n; i++){
             if(w[curr.second][i]){
@@ -127,21 +127,21 @@ int main(){
 
     freopen("dijk_input_2.txt","r",stdin);
     readInput();
-    printGraph();
+    //printGraph();
 
     int source = 0;
     dijkstra(source);
 
-    cout<<"d[u] after dijkstra :"<<endl;
-    for(int i=0; i<n; i++){
-        cout<<name[i]<<"-"<<d[i]<<" ";
-    }
-    cout<<endl;
-    cout<<"parents for every node: "<<endl;
-    for(int i=0; i<n; i++){
-        cout<<name[i]<<"-"<<name[prv[i]]<<" ";
-    }
-    cout<<endl;
+    // cout<<"d[u] after dijkstra :"<<endl;
+    // for(int i=0; i<n; i++){
+    //     cout<<name[i]<<"-"<<d[i]<<" ";
+    // }
+    // cout<<endl;
+    // cout<<"parents for every node: "<<endl;
+    // for(int i=0; i<n; i++){
+    //     cout<<name[i]<<"-"<<name[prv[i]]<<" ";
+    // }
+    // cout<<endl;
     printPath(source);
 
 }

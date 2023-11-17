@@ -114,7 +114,7 @@ int main(){
 
     freopen("Bellman_input.txt","r",stdin);
     readInput();
-    printGraph();
+    //printGraph();
 
     //cout<<"n: "<<n<<endl;
 
@@ -124,16 +124,16 @@ int main(){
         cout<<"Negative cycle found so Bellmanford is not possible."<<endl;
     }
     else{
-        cout<<"d[u] after Bellman_Ford :"<<endl;
-        for(int i=0; i<n; i++){
-            cout<<name[i]<<":"<<d[i]<<" ";
-        }
-        cout<<endl;
-        cout<<"parents for every node: "<<endl;
-        for(int i=0; i<n; i++){
-            cout<<name[i]<<":"<<name[prv[i]]<<" ";
-        }
-        cout<<endl;
+        // cout<<"d[u] after Bellman_Ford :"<<endl;
+        // for(int i=0; i<n; i++){
+        //     cout<<name[i]<<":"<<d[i]<<" ";
+        // }
+        // cout<<endl;
+        // cout<<"parents for every node: "<<endl;
+        // for(int i=0; i<n; i++){
+        //     cout<<name[i]<<":"<<name[prv[i]]<<" ";
+        // }
+        // cout<<endl;
         printPath(source);
     }
 

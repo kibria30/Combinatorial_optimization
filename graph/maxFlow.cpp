@@ -36,6 +36,7 @@ void readInput(){
         }
 
         cin >> graph[u][v];
+        //graph[v][u] = graph[u][v];            //eita korle ans 23 theke 24 hocce but why
 
     }
 }
@@ -97,7 +98,7 @@ int fordFulkerson(int source, int sink) {
 
 int main() {
 
-    freopen("maxFlow_input.txt", "r", stdin);
+    freopen("maxflow_input.txt", "r", stdin);
     readInput();
     printGraph();
 
