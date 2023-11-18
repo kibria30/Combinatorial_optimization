@@ -27,7 +27,7 @@ void printResult(){
 }
 
 int calcMaxProfit(int i){
-    cout<<"length: "<<i<<endl;
+    //cout<<"length: "<<i<<endl;
     if(cutLength[i].maxProfit > 0){
         return cutLength[i].maxProfit;
     } 
@@ -80,9 +80,9 @@ int main(){
     
     freopen("rodCutting_input.txt", "r", stdin);
     readInput();
-    printResult();
+    //printResult();
     cutRod();
-    printResult();
+    //printResult();
     cout<<"Maxprofit for length "<<totalLength<<" is : "<<cutLength[totalLength].maxProfit<<endl;
     cout<<"take this lengths: ";
 

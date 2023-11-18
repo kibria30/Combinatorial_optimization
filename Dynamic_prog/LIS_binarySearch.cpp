@@ -41,7 +41,7 @@ int LIS(){
             }
             L[start] = arr[i];
             L_Index[start] = i;
-            if( (start -1) >= 0)
+            if( (start -1) >= 0)           // "=" sign na dilei mone hocce valo logic hoy
                 prevIndex[i] = L_Index[start - 1];
             else prevIndex[i] = -1;
         }

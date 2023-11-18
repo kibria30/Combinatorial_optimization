@@ -42,14 +42,14 @@ void knapsack(){
 int main(){
     freopen("knap01_input.txt", "r", stdin);
     readInput();
-    printOutput();
+    //printOutput();
 
     knapsack();
-    for(int i=0;i<=numOfItems; i++){
-        for(int w = 0; w<=capacity; w++){
-            cout<<table[i][w]<<" ";
-        }
-        cout<<endl;
-    }
+    // for(int i=0;i<=numOfItems; i++){
+    //     for(int w = 0; w<=capacity; w++){
+    //         cout<<table[i][w]<<" ";
+    //     }
+    //     cout<<endl;
+    // }
     cout<<"Max profit is: "<<table[numOfItems][capacity]<<endl;
 }

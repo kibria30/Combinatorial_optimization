@@ -68,15 +68,15 @@ void printPath(int row, int col){
 int main(){
     freopen("knap01_input.txt", "r", stdin);
     readInput();
-    printOutput();
+    //printOutput();
 
     knapsack();
-    for(int i=0;i<=numOfItems; i++){
-        for(int w = 0; w<=capacity; w++){
-            cout<<table[i][w].maxProfit<<" ";
-        }
-        cout<<endl;
-    }
+    // for(int i=0;i<=numOfItems; i++){
+    //     for(int w = 0; w<=capacity; w++){
+    //         cout<<table[i][w].maxProfit<<" ";
+    //     }
+    //     cout<<endl;
+    // }
         
     cout<<"Max profit is: "<<table[numOfItems][capacity].maxProfit<<endl;
     cout<<"Items to be selected for maxprofit: ";
